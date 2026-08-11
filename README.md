@@ -72,15 +72,15 @@ PDF Output Folder
 
 ## System Requirements
 - **Operating System**: Windows 10 or Windows 11 (64-bit)
-- **Engine Requirement**: [LibreOffice](https://www.libreoffice.org/download/download/) (Free & Open Source). Python is **NOT** required for end-users running the pre-compiled `.exe`.
+- **Engine Requirement**: [LibreOffice](https://www.libreoffice.org/download/) (Free & Open Source). Python is **NOT** required for end-users running the pre-compiled `.exe`.
 
 ## Installation & Download
 
 ### Method 1 — Download Executable (Recommended for End-Users)
 No Python installation required.
 
-1. Download **`PPTX2PDF.exe`** from the **[GitHub Releases Page](https://github.com/Istiyak-Ishan/pptx2pdf-/releases)**.
-2. Install **[LibreOffice](https://www.libreoffice.org/download/download/)** if not already installed.
+1. Download **`PPTX2PDF.exe`** from the **pptx2/dist/pptx2pdf.exe**.
+2. Install **[LibreOffice](https://www.libreoffice.org/download/)** if not already installed.
 3. Double-click **`PPTX2PDF.exe`** to launch the application.
 
 ### Method 2 — Run from Source (Development Setup)
