@@ -79,7 +79,7 @@ PDF Output Folder
 ### Method 1 — Download Executable (Recommended for End-Users)
 No Python installation required.
 
-1. Download **`PPTX2PDF.exe`** from the **pptx2/dist/pptx2pdf.exe**.
+1. Download **`PPTX2PDF.exe`**[PPTX2PDF](https://github.com/Istiyak-Ishan/pptx2pdf-/blob/main/dist/PPTX2PDF.exe)**.
 2. Install **[LibreOffice](https://www.libreoffice.org/download/)** if not already installed.
 3. Double-click **`PPTX2PDF.exe`** to launch the application.
 
