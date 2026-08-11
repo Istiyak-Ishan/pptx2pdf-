@@ -1,16 +1,17 @@
-PPTX2PDF — Lightweight Windows PowerPoint to PDF Converter
+# PPTX2PDF — Lightweight Windows PowerPoint to PDF Converter
 
 A desktop application and CLI tool built with Python and CustomTkinter that converts PowerPoint `.pptx` presentations into `.pdf` files locally on Windows using LibreOffice in headless mode. Includes batch processing, background thread rendering, file collision options, unit tests, PyInstaller packaging, and automated GitHub Actions CI builds.
 
-Tech Stack
-CustomTkinter — modern desktop GUI
-LibreOffice — headless rendering engine (soffice)
-PyInstaller — single-file Windows executable packaging
-Pytest — unit testing suite with mocked dependencies
-Pillow — application icon generation
-GitHub Actions — automated Windows CI workflow
+## Tech Stack
+- **CustomTkinter** — Modern desktop GUI
+- **LibreOffice** — Headless PowerPoint rendering engine (`soffice`)
+- **PyInstaller** — Single-file Windows executable packaging
+- **Pytest** — Unit testing suite with mocked dependencies
+- **Pillow** — Application icon generation
+- **GitHub Actions** — Automated Windows CI workflow
 
-Project Structure
+## Project Structure
+```text
 pptx2pdf/
 ├── app/
 │   ├── __init__.py
@@ -41,9 +42,11 @@ pptx2pdf/
 ├── build.bat                       # One-click PyInstaller build script
 ├── run.bat                         # Quick launcher for development mode
 └── pptx2pdf.spec                   # PyInstaller bundle specification
+```
 
-Architecture
+## Architecture
 
+```text
 GUI / CLI Interface
       ↓
 Conversion Engine (app/converter.py)
@@ -53,34 +56,32 @@ Subprocess Staging (tempfile)
 LibreOffice Headless (soffice --headless --convert-to pdf)
       ↓
 PDF Output Folder
+```
 
-Features
+## Features
 
-Batch Conversion — Select and convert multiple .pptx presentations simultaneously.
-100% Local & Private — All rendering happens locally via LibreOffice. No files are uploaded to any external server.
-Non-Blocking GUI — Conversions run on a background thread so the interface stays responsive with real-time progress updates.
-Collision Strategies — Option to overwrite existing PDFs or automatically generate unique output names (e.g. presentation (1).pdf).
-LibreOffice Auto-Detection — Automatically checks system PATH, Program Files, AppData, and the Windows Registry. Includes inline buttons to download or browse to custom soffice.exe locations.
-Standalone Executable — Packaged into a single dist/PPTX2PDF.exe file. End-users do not need Python installed.
+- **Batch Conversion**: Select and convert multiple `.pptx` presentations simultaneously.
+- **100% Local & Private**: All rendering happens locally via LibreOffice. No files are uploaded to any external server.
+- **Non-Blocking GUI**: Conversions run on a background thread so the interface stays responsive with real-time progress updates.
+- **Collision Strategies**: Option to overwrite existing PDFs or automatically generate unique output names (e.g. `presentation (1).pdf`).
+- **LibreOffice Auto-Detection**: Automatically checks system PATH, Program Files, AppData, and the Windows Registry. Includes inline buttons to download or browse to custom `soffice.exe` locations.
+- **Standalone Executable**: Packaged into a single `dist/PPTX2PDF.exe` file. End-users do not need Python installed.
 
-Screenshots
+## System Requirements
+- **Operating System**: Windows 10 or Windows 11 (64-bit)
+- **Engine Requirement**: [LibreOffice](https://www.libreoffice.org/download/download/) (Free & Open Source). Python is **NOT** required for end-users running the pre-compiled `.exe`.
 
-Application Interface
+## Installation & Usage
 
-System Requirements
-Operating System: Windows 10 or Windows 11 (64-bit)
-Engine Requirement: LibreOffice (Free & Open Source). Python is NOT required for end-users running the pre-compiled .exe.
-
-Installation & Usage
-
-Method 1 — Download Pre-Compiled Executable (End-Users)
-1. Download PPTX2PDF.exe from GitHub Releases.
+### Method 1 — Download Pre-Compiled Executable (End-Users)
+1. Download `PPTX2PDF.exe` from GitHub Releases.
 2. Install LibreOffice if not already installed on your PC.
-3. Launch PPTX2PDF.exe, select your .pptx files, and click Convert to PDF.
+3. Launch `PPTX2PDF.exe`, select your `.pptx` files, and click **Convert to PDF**.
 
-Method 2 — Development Setup
+### Method 2 — Development Setup
+```bash
 # 1. Clone repository
-git clone https://github.com/username/pptx2pdf.git
+git clone https://github.com/Istiyak-Ishan/pptx2pdf-.git
 cd pptx2pdf
 
 # 2. Create virtual environment
@@ -93,37 +94,44 @@ pip install -r requirements-dev.txt
 
 # 4. Launch GUI
 python -m app.main
+```
 
-CLI Mode
+## CLI Mode
 Run conversions directly from the terminal without launching the GUI:
 
+```bash
 python -m app.main presentation.pptx --output C:\PDFs
 python -m app.main pres1.pptx pres2.pptx -o C:\PDFs --no-overwrite
+```
 
-Building the Executable
-To compile the standalone dist/PPTX2PDF.exe using PyInstaller:
+## Building the Executable
+To compile the standalone `dist/PPTX2PDF.exe` using PyInstaller:
 
+```bash
 # Using build script
 build.bat
 
 # Or using PyInstaller directly
 pyinstaller --clean pptx2pdf.spec
+```
 
-Running Unit Tests
-Run the test suite via pytest:
+## Running Unit Tests
+Run the test suite via `pytest`:
 
+```bash
 pytest tests/ -v
+```
 
-Notes on Rendering
+## Notes on Rendering
 Rendering quality depends on LibreOffice's PPTX import engine. While standard slides, text, shapes, and images render identically, complex Office 365 specific animations or custom proprietary Microsoft fonts may display slight visual differences.
 
-Future Improvements
-Add drag-and-drop file support directly onto the application window
-Add PPTX -> PNG/JPEG slide export mode
-Support portable bundled LibreOffice runner
-Add conversion history log viewer tab
+## Future Improvements
+- Add drag-and-drop file support directly onto the application window
+- Add PPTX -> PNG/JPEG slide export mode
+- Support portable bundled LibreOffice runner
+- Add conversion history log viewer tab
 
-About
+## About
 A lightweight Windows desktop application and CLI tool that converts PowerPoint presentations into PDFs locally using LibreOffice in headless mode. Built with Python, CustomTkinter, PyInstaller, and GitHub Actions.
 
-Topics: python customtkinter pptx-to-pdf libreoffice desktop-app windows pyinstaller batch-converter
+**Topics**: `python` `customtkinter` `pptx-to-pdf` `libreoffice` `desktop-app` `windows` `pyinstaller` `batch-converter`
