@@ -109,6 +109,17 @@ python -m app.main presentation.pptx --output C:\PDFs
 python -m app.main pres1.pptx pres2.pptx -o C:\PDFs --no-overwrite
 ```
 
+### CLI Options Summary
+
+| Flag / Parameter | Type | Description |
+| --- | --- | --- |
+| `inputs` | Positional | One or more `.pptx` presentation files to convert |
+| `-o`, `--output` | Path | Output folder directory for generated `.pdf` files |
+| `--libreoffice` | Path | Custom path to LibreOffice `soffice.exe` |
+| `--no-overwrite` | Flag | Prevent overwriting existing PDF files (creates unique filenames) |
+| `--open` | Flag | Automatically open destination folder after conversion completes |
+| `--version` | Flag | Display application version and title |
+
 ## Building the Executable
 To compile the standalone Windows executable yourself using PyInstaller:
 
