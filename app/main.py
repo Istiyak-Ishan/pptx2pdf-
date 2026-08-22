@@ -47,7 +47,7 @@ def run_cli(args: argparse.Namespace) -> int:
 
     return 0
 
-def run_gui():
+def run_gui() -> None:
     """Launch the CustomTkinter desktop GUI."""
     setup_logging("pptx2pdf.log")
     logger = logging.getLogger(__name__)
@@ -57,9 +57,10 @@ def run_gui():
     app = PPTX2PDFApp()
     app.mainloop()
 
-def main():
+def main() -> None:
     """Main application entry point."""
     parser = argparse.ArgumentParser(
+        prog="pptx2pdf",
         description=f"{APP_TITLE} — Convert PowerPoint .pptx files to PDF using LibreOffice."
     )
     parser.add_argument("inputs", nargs="*", help="One or more .pptx files to convert.")
