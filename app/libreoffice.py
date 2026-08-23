@@ -50,6 +50,9 @@ def find_libreoffice(custom_path: str | None = None) -> Path | None:
     2. System PATH (via shutil.which)
     3. Standard installation paths
     4. Windows Registry
+
+    :param custom_path: Optional explicit path to soffice executable provided by user.
+    :return: Resolved Path to soffice executable, or None if not found.
     """
     # 1. Check custom user-specified path
     if custom_path and is_valid_soffice(custom_path):
