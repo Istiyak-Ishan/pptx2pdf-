@@ -31,7 +31,7 @@ class BatchConversionResult:
 class PPTXConverter:
     """Core PPTX to PDF conversion engine utilizing LibreOffice in headless mode."""
 
-    def __init__(self, libreoffice_path: str | Path | None = None):
+    def __init__(self, libreoffice_path: str | Path | None = None) -> None:
         if libreoffice_path:
             self.libreoffice_path = Path(libreoffice_path) if is_valid_soffice(libreoffice_path) else None
         else:
@@ -65,6 +65,12 @@ class PPTXConverter:
     ) -> ConversionResult:
         """
         Convert a single PPTX file to PDF.
+
+        :param input_file: Path to source .pptx file.
+        :param output_folder: Destination folder for converted .pdf.
+        :param overwrite: Whether to overwrite existing destination files.
+        :param timeout_seconds: Maximum time allowed for subprocess conversion.
+        :return: ConversionResult object containing status and metadata.
         """
         start_time = time.time()
         input_path = Path(input_file).resolve()
