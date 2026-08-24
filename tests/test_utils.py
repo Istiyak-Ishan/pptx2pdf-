@@ -35,3 +35,10 @@ def test_open_output_folder_nonexistent():
     success, err = open_output_folder("C:/nonexistent_folder_path_xyz_99")
     assert success is False
     assert "does not exist" in err.lower() or "not a directory" in err.lower()
+
+def test_get_log_filepath():
+    from app.config import get_log_filepath
+    log_path = get_log_filepath("test_custom.log")
+    assert log_path.name == "test_custom.log"
+    assert log_path.parent.name == "logs"
+

@@ -28,10 +28,13 @@ def get_logs_dir() -> Path:
     logs_dir.mkdir(parents=True, exist_ok=True)
     return logs_dir
 
+def get_log_filepath(log_filename: str = "pptx2pdf.log") -> Path:
+    """Get the full Path object for the application log file."""
+    return get_logs_dir() / log_filename
+
 def setup_logging(log_filename: str = "pptx2pdf.log") -> Path:
     """Set up application logging."""
-    logs_dir = get_logs_dir()
-    log_file = logs_dir / log_filename
+    log_file = get_log_filepath(log_filename)
 
     # Configure root logger
     logging.basicConfig(
@@ -45,3 +48,4 @@ def setup_logging(log_filename: str = "pptx2pdf.log") -> Path:
     logger = logging.getLogger(__name__)
     logger.info(f"Logging initialized. Application version: {APP_VERSION}")
     return log_file
+
