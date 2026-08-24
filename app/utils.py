@@ -5,8 +5,13 @@ from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
-def is_valid_pptx(path_str: str | Path) -> bool:
-    """Check if file exists and has a .pptx extension."""
+def is_valid_pptx(path_str: str | Path | None) -> bool:
+    """
+    Check if the given path string or Path object exists and has a .pptx extension.
+
+    :param path_str: Path object or string representation of file path.
+    :return: True if valid existing .pptx file, False otherwise.
+    """
     if not path_str:
         return False
     path = Path(path_str)
@@ -16,6 +21,10 @@ def get_unique_pdf_path(output_folder: Path, stem: str) -> Path:
     """
     Generate a non-colliding PDF output path in the given folder.
     e.g. presentation.pdf -> presentation (1).pdf -> presentation (2).pdf
+
+    :param output_folder: Destination folder Path object.
+    :param stem: Base filename stem without extension.
+    :return: Resolved non-colliding output Path object.
     """
     target = output_folder / f"{stem}.pdf"
     if not target.exists():
@@ -30,8 +39,10 @@ def get_unique_pdf_path(output_folder: Path, stem: str) -> Path:
 
 def open_output_folder(folder_path: str | Path) -> tuple[bool, str]:
     """
-    Open output folder in Windows File Explorer.
-    Returns (success, error_message).
+    Open output folder in system file manager (Windows File Explorer or OS equivalent).
+
+    :param folder_path: Target directory path to open.
+    :return: Tuple of (success_boolean, error_message_string).
     """
     try:
         path = Path(folder_path).resolve()
@@ -54,3 +65,4 @@ def open_output_folder(folder_path: str | Path) -> tuple[bool, str]:
     except Exception as e:
         logger.exception(f"Failed to open folder {folder_path}")
         return False, str(e)
+
