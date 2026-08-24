@@ -137,10 +137,14 @@ dist/PPTX2PDF.exe
 ```
 
 ## Running Unit Tests
-Run the test suite via `pytest`:
+Run the test suite via `pytest` (or using virtual environment):
 
 ```bash
+# With active virtual environment
 pytest tests/ -v
+
+# Or directly using virtual environment binary
+.\.venv\Scripts\pytest tests/ -v
 ```
 
 ## Notes on Rendering
