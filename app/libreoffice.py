@@ -55,9 +55,12 @@ def find_libreoffice(custom_path: str | None = None) -> Path | None:
     :return: Resolved Path to soffice executable, or None if not found.
     """
     # 1. Check custom user-specified path
-    if custom_path and is_valid_soffice(custom_path):
-        logger.info(f"Using custom LibreOffice path: {custom_path}")
-        return Path(custom_path)
+    if custom_path:
+        if is_valid_soffice(custom_path):
+            logger.info(f"Using custom LibreOffice path: {custom_path}")
+            return Path(custom_path)
+        else:
+            logger.warning(f"Custom LibreOffice path provided is invalid or missing: {custom_path}")
 
     # 2. Check system PATH
     path_executable = shutil.which("soffice") or shutil.which("soffice.exe")
