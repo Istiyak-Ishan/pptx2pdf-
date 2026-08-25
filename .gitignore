@@ -20,15 +20,20 @@ build/
 *.log
 logs/
 
-# Pytest / Coverage
+# Pytest / Coverage / Linters
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
 .coverage
 htmlcov/
 
-# IDE & OS
+# IDE, OS & Backups
 .idea/
 .vscode/
 *.swp
 *.swo
+*.orig
+*.bak
 .DS_Store
 Thumbs.db
+
