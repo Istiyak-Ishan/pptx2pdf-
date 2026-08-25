@@ -175,6 +175,7 @@ class PPTXConverter:
         input_files: list[str | Path],
         output_folder: str | Path,
         overwrite: bool = True,
+        timeout_seconds: int = 300,
         progress_callback: Callable[[int, int, str, str], None] | None = None
     ) -> BatchConversionResult:
         """
@@ -192,7 +193,12 @@ class PPTXConverter:
             if progress_callback:
                 progress_callback(idx, len(paths), filename, f"Converting {filename} ({idx}/{len(paths)})...")
 
-            res = self.convert_file(input_path, output_folder, overwrite=overwrite)
+            res = self.convert_file(
+                input_path,
+                output_folder,
+                overwrite=overwrite,
+                timeout_seconds=timeout_seconds
+            )
             batch_result.results.append(res)
 
             if res.success:

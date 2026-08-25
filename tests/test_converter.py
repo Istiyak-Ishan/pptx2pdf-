@@ -176,3 +176,30 @@ def test_partial_batch_failure_recovery(mock_converter, tmp_path):
         assert batch_res.failed_count == 1
         assert batch_res.results[1].success is False
         assert "Corrupted presentation" in batch_res.results[1].error_message
+
+def test_batch_conversion_with_custom_timeout(mock_converter, tmp_path):
+    converter, _ = mock_converter
+    f1 = tmp_path / "test.pptx"
+    f1.write_bytes(b"content")
+    out_dir = tmp_path / "out"
+
+    captured_timeout = []
+    def mock_subprocess_run(cmd, capture_output, text, timeout, check):
+        captured_timeout.append(timeout)
+        outdir_idx = cmd.index("--outdir") + 1
+        temp_dir = Path(cmd[outdir_idx])
+        pdf = temp_dir / "test.pdf"
+        pdf.write_bytes(b"%PDF-1.4")
+        mock_proc = MagicMock()
+        mock_proc.returncode = 0
+        return mock_proc
+
+    with patch("subprocess.run", side_effect=mock_subprocess_run):
+        batch_res = converter.convert_batch(
+            input_files=[f1],
+            output_folder=out_dir,
+            timeout_seconds=45
+        )
+        assert batch_res.successful_count == 1
+        assert captured_timeout == [45]
+
