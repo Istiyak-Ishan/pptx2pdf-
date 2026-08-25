@@ -203,3 +203,36 @@ def test_batch_conversion_with_custom_timeout(mock_converter, tmp_path):
         assert batch_res.successful_count == 1
         assert captured_timeout == [45]
 
+def test_run_cli_execution(mock_converter, tmp_path):
+    import argparse
+    from app.main import run_cli
+
+    _, soffice_path = mock_converter
+    f1 = tmp_path / "cli_test.pptx"
+    f1.write_bytes(b"cli content")
+    out_dir = tmp_path / "cli_out"
+
+    args = argparse.Namespace(
+        inputs=[str(f1)],
+        output=str(out_dir),
+        libreoffice=str(soffice_path),
+        no_overwrite=False,
+        timeout=60,
+        open=False
+    )
+
+    def mock_subprocess_run(cmd, capture_output, text, timeout, check):
+        outdir_idx = cmd.index("--outdir") + 1
+        temp_dir = Path(cmd[outdir_idx])
+        pdf = temp_dir / "cli_test.pdf"
+        pdf.write_bytes(b"%PDF-1.4")
+        mock_proc = MagicMock()
+        mock_proc.returncode = 0
+        return mock_proc
+
+    with patch("subprocess.run", side_effect=mock_subprocess_run):
+        exit_code = run_cli(args)
+        assert exit_code == 0
+        assert (out_dir / "cli_test.pdf").exists()
+
+

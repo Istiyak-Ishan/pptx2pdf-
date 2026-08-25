@@ -28,6 +28,7 @@ def run_cli(args: argparse.Namespace) -> int:
         input_files=input_paths,
         output_folder=output_dir,
         overwrite=not args.no_overwrite,
+        timeout_seconds=args.timeout,
         progress_callback=lambda idx, total, fname, msg: print(f"[{idx}/{total}] {msg}")
     )
 
@@ -65,6 +66,7 @@ def main() -> None:
     )
     parser.add_argument("inputs", nargs="*", help="One or more .pptx files to convert.")
     parser.add_argument("-o", "--output", help="Output folder directory.")
+    parser.add_argument("-t", "--timeout", type=int, default=300, help="Conversion timeout per file in seconds (default: 300).")
     parser.add_argument("--libreoffice", help="Custom path to LibreOffice soffice.exe.")
     parser.add_argument("--no-overwrite", action="store_true", help="Do not overwrite existing PDF files.")
     parser.add_argument("--open", action="store_true", help="Open output folder after conversion.")
