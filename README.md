@@ -31,7 +31,8 @@ pptx2pdf/
 ├── tests/
 │   ├── __init__.py
 │   ├── test_converter.py           # Unit tests for conversion engine & error handling
-│   └── test_libreoffice.py         # Unit tests for LibreOffice detection logic
+│   ├── test_libreoffice.py         # Unit tests for LibreOffice detection logic
+│   └── test_utils.py               # Unit tests for path and utility functions
 │
 ├── .github/
 │   └── workflows/
@@ -115,6 +116,7 @@ python -m app.main pres1.pptx pres2.pptx -o C:\PDFs --no-overwrite
 | --- | --- | --- |
 | `inputs` | Positional | One or more `.pptx` presentation files to convert |
 | `-o`, `--output` | Path | Output folder directory for generated `.pdf` files |
+| `-t`, `--timeout` | Number | Conversion timeout per file in seconds (default: 300) |
 | `--libreoffice` | Path | Custom path to LibreOffice `soffice.exe` |
 | `--no-overwrite` | Flag | Prevent overwriting existing PDF files (creates unique filenames) |
 | `--open` | Flag | Automatically open destination folder after conversion completes |
