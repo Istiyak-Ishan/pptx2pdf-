@@ -1,6 +1,12 @@
-import pytest
 from pathlib import Path
-from app.utils import is_valid_pptx, get_unique_pdf_path, open_output_folder
+
+from app.utils import (
+    format_file_size,
+    get_unique_pdf_path,
+    is_valid_pptx,
+    open_output_folder,
+)
+
 
 def test_is_valid_pptx_valid(tmp_path: Path):
     pptx_file = tmp_path / "test.pptx"
@@ -41,4 +47,14 @@ def test_get_log_filepath():
     log_path = get_log_filepath("test_custom.log")
     assert log_path.name == "test_custom.log"
     assert log_path.parent.name == "logs"
+
+def test_format_file_size():
+    assert format_file_size(-10) == "0 B"
+    assert format_file_size(0) == "0 B"
+    assert format_file_size(512) == "512 B"
+    assert format_file_size(1024) == "1.0 KB"
+    assert format_file_size(1536) == "1.5 KB"
+    assert format_file_size(1048576) == "1.0 MB"
+    assert format_file_size(1073741824) == "1.0 GB"
+
 

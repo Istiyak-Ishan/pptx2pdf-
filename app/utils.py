@@ -66,3 +66,22 @@ def open_output_folder(folder_path: str | Path) -> tuple[bool, str]:
         logger.exception(f"Failed to open folder {folder_path}")
         return False, str(e)
 
+
+def format_file_size(size_bytes: float) -> str:
+    """
+    Format a byte count into a human-readable string (e.g. B, KB, MB, GB).
+
+    :param size_bytes: Size in bytes.
+    :return: Formatted string representation of size.
+    """
+    if size_bytes < 0:
+        return "0 B"
+    size = float(size_bytes)
+    for unit in ["B", "KB", "MB", "GB", "TB"]:
+        if size < 1024.0 or unit == "TB":
+            if unit == "B":
+                return f"{int(size)} B"
+            return f"{size:.1f} {unit}"
+        size /= 1024.0
+    return f"{size:.1f} PB"
+

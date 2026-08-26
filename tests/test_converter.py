@@ -205,6 +205,7 @@ def test_batch_conversion_with_custom_timeout(mock_converter, tmp_path):
 
 def test_run_cli_execution(mock_converter, tmp_path):
     import argparse
+
     from app.main import run_cli
 
     _, soffice_path = mock_converter
